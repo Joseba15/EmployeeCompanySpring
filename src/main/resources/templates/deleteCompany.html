@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<div th:replace="layout/head :: head"></div>
+<body>
+<nav th:replace="layout/menu :: menuJacaranda"></nav>
+
+<div class="container">
+	<form class="form-horizontal" th:action="@{/deleteCompany/submit}"
+		th:object="${company}" th:method="POST">
+		<fieldset>
+
+			<!-- Form Name -->
+			<legend>Delete Company</legend>
+
+			<input  id="id" name="id" th:field="*{id}" th:value="*{id}" hidden>
+
+			<!-- Text input-->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="name">Name</label>
+				<div class="col-md-4">
+					<input id="name" name="name" type="text"
+						class="form-control input-md" th:field="*{name}"  readonly>
+
+				</div>
+			</div>
+
+			
+			<!-- Text input-->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="name">Address</label>
+				<div class="col-md-4">
+					<input id="address" name="address" type="text"
+						class="form-control input-md" th:field="*{address}" readonly>
+
+				</div>
+			</div>
+			
+				<!-- Text input-->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="name">City</label>
+				<div class="col-md-4">
+					<input id="city" name="city" type="text"
+						class="form-control input-md" th:field="*{city}" readonly>
+
+				</div>
+			</div>
+			
+
+			<!-- Button -->
+			<div class="form-group">
+				<div class="col-md-4">
+					<button type="submit" class="btn btn-primary">Delete</button>
+					<a href="/listCompany">
+						<button type="button" class="btn btn-danger">Cancel</button>
+					</a>
+				</div>
+			</div>
+
+		</fieldset>
+	</form>
+	</div>
+
+<div th:insert="layout/footer :: pie"></div>
+</body>
+</html>

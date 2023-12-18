@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<div th:replace="layout/head :: head"></div>
+<body>
+<nav th:replace="layout/menu :: menuJacaranda"></nav>
+
+<table class="table">
+  <thead>
+    <tr >
+	  <th scope="col">Id</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">City</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="emp : ${list}">
+      <td th:text="${emp.id}"></td>
+	  <td th:text="${emp.firstName}"></td>
+      <td th:text="${emp.email}"></td>
+      <td th:text="${emp.dateOfBirth}"></td>
+    </tr>
+  </tbody>
+</table>
+
+<div th:insert="layout/footer :: pie"></div>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<div th:replace="layout/head :: head"></div>
+<body>
+<nav th:replace="layout/menu :: menuJacaranda"></nav>
+
+<div class="container">
+	<form class="form-horizontal" th:action="@{/employee/add/submit}"
+		th:object="${emp}" th:method="POST">
+		<fieldset>
+
+			<legend>Add Emloyee</legend>
+
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="name">F.Name</label>
+				<div class="col-md-4">
+					<input id="firstName" name="firstName" type="text"
+						class="form-control input-md" th:field="*{firstName}" required>
+
+				</div>
+			</div>
+
+			
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="name">L.Name</label>
+				<div class="col-md-4">
+					<input id="lastName" name="lastName" type="text"
+						class="form-control input-md" th:field="*{lastName}" required>
+
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="name">Email</label>
+				<div class="col-md-4">
+					<input id="email" name="email" type="email"
+						class="form-control input-md" th:field="*{email}" required>
+
+				</div>
+			</div>
+			
+			
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="name">Gender</label>
+				<div class="col-md-4">
+					<input id="gender" name="gender" type="text"
+						class="form-control input-md" th:field="*{gender}" required>
+
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="name">Birth Date </label>
+				<div class="col-md-4">
+					<input id="dateOfBirth" name="dateOfBirth" type="date"
+						class="form-control input-md" th:field="*{dateOfBirth}" required>
+
+				</div>
+			</div>
+			
+			
+				<!-- Select Basic -->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="category">Company</label>
+				<div class="col-md-4">
+					<select id="company" name="company" class="form-control">
+						<option th:each="company : ${listComp}"
+							th:value="${company.id}" th:text="${company.name}">
+						</option>
+					</select>
+				</div>
+			</div>
+
+			<!-- Button -->
+			<div class="form-group">
+				<div class="col-md-4">
+				
+					<button type="submit" id="addItem" name="addItem" class="btn btn-primary">Add</button>
+					
+					<a href="/listEmployee"><button type="button"
+							class="btn btn-danger">Cancel</button>
+					</a>
+				</div>
+			</div>
+			
+			
+			
+
+		</fieldset>
+	</form>
+	</div>
+
+<div th:insert="layout/footer :: pie"></div>
+</body>
+</html>

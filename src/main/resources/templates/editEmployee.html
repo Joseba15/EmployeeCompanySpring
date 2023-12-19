@@ -5,11 +5,14 @@
 <nav th:replace="layout/menu :: menuJacaranda"></nav>
 
 <div class="container">
-	<form class="form-horizontal" th:action="@{/employee/add/submit}"
+	<form class="form-horizontal" th:action="@{/employee/edit/submit}"
 		th:object="${emp}" th:method="POST">
 		<fieldset>
 
-			<legend>Add Emloyee</legend>
+			<legend>Edit Emloyee</legend>
+			
+			<input  id="id" name="id" th:field="*{id}" th:value="*{id}" hidden>
+
 
 			<div class="form-group" th:classapend="${#fields.hasErrors('firstName')} ? 'has-error'">
 				<label class="col-md-4 control-label" for="name">F.Name</label>
@@ -83,7 +86,7 @@
 			<div class="form-group">
 				<div class="col-md-4">
 				
-					<button type="submit" id="addItem" name="addItem" class="btn btn-primary">Add</button>
+					<button type="submit" id="addItem" name="addItem" class="btn btn-primary">Update</button>
 					
 					<a href="/listEmployee"><button type="button"
 							class="btn btn-danger">Cancel</button>

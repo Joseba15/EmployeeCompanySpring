@@ -3,6 +3,9 @@ package com.jacaranda.employeeCompany.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.jacaranda.employeeCompany.model.Employee;
@@ -15,6 +18,14 @@ public class EmployeeService {
 	
 	@Autowired
 	EmployeeRepository repository;
+	
+	
+	public Page<Employee> getEmployeesPageable(int pageNum, int pageSize){
+		
+		Pageable pageable = PageRequest.of(pageNum -1, pageSize);
+		return repository.findAll(pageable);
+		
+	}
 	
 	public List<Employee> getEmployees(){
 		return repository.findAll();
@@ -36,24 +47,31 @@ public class EmployeeService {
 	}
 	
 	
-	public Employee updateEmployee (Employee compMod) {
+	public Employee updateEmployee (Employee empMod) throws Exception {
 		
 		Employee emp = null;
 		
-//		if (compMod.getName() != null && compMod.getCity()!=null && compMod.getAddress()!=null  ) {
-//			
-//			if(this.getCompany(compMod.getId())==null) {
-//				
-//			}
-//			
-//			comp = this.getCompany(compMod.getId());
-//
-//			comp.setName(compMod.getName());
-//			comp.setAddress(compMod.getAddress());
-//			comp.setCity(compMod.getCity());
-//
-//			repository.save(comp);
-//		}
+		if (empMod.getFirstName() != null && empMod.getLastName()!=null && empMod.getDateOfBirth()!=null
+				&& empMod.getEmail()!=null  && empMod.getGender()!=null && empMod.getCompany()!=null ) {
+	
+			
+			if(this.getEmployee(empMod.getId())==null) {
+				throw new Exception();
+			}
+			
+			emp = this.getEmployee(empMod.getId());
+
+			emp.setFirstName(empMod.getFirstName());;
+			emp.setLastName(empMod.getLastName());
+			emp.setEmail(empMod.getEmail());
+			emp.setGender(empMod.getGender());
+			emp.setCompany(empMod.getCompany());
+			emp.setDateOfBirth(empMod.getDateOfBirth());
+			
+			repository.save(emp);
+		}
+		
+		
 		
 		return emp;
 	}

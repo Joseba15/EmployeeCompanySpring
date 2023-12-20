@@ -30,16 +30,17 @@ public class EmployeeController {
 	
 	@GetMapping({"/","/employee/listPageable"})
 	public String listEmployeePageable (Model model, @RequestParam("pageNumber") Optional<Integer> pageNumber,
-			@RequestParam("sizeNumber") Optional<Integer> sizeNumber) {
+			@RequestParam("sizeNumber") Optional<Integer> sizeNumber, @RequestParam("sortField") Optional<String> sortField, 
+			@RequestParam("order") Optional<Integer> order ) {
 		
 
 		
-		Page<Employee> page = service.getEmployeesPageable(pageNumber.orElse(1), sizeNumber.orElse(10) );
+		Page<Employee> page = service.getEmployeesPageable(pageNumber.orElse(1), sizeNumber.orElse(10),sortField.orElse("id") );
 		
 		model.addAttribute("currentPage", pageNumber.orElse(1) );
 		model.addAttribute("totalItems", page.getTotalElements() );
 		model.addAttribute("totalPages", page.getTotalPages() );
-		model.addAttribute("list", page.getContent() );
+		model.addAttribute("list", page.getContent());
 
 
 		

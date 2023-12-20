@@ -7,10 +7,10 @@
 <table class="table">
   <thead>
     <tr >
-	  <th scope="col">Id</th>
-      <th scope="col">Name</th>
-      <th scope="col">Email</th>
-      <th scope="col">City</th>
+	  <th scope="col"><a th:href="@{'/employee/listPageable?sortField=id&pageNumber='+ ${currentPage}+ ''}">Id</a></th>
+      <th scope="col"><a th:href="@{'/employee/listPageable?sortField=firstName&pageNumber='+ ${currentPage}}">Name</a></th>
+      <th scope="col"><a th:href="@{'/employee/listPageable?sortField=email&pageNumber='+ ${currentPage}}">Email</a></th>
+      <th scope="col"><a th:href="@{'/employee/listPageable?sortField=dateOfBirth&pageNumber='+ ${currentPage}}">Date of Birth</a></th>
       
     </tr>
   </thead>
@@ -24,7 +24,7 @@
   </tbody>
 </table>
 
-<!--Pageable -->
+<!-- Pageable -->
 <div>
 	Total Items: <a th:text= "${totalItems}"/>
 	
